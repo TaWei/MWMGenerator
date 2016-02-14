@@ -1,4 +1,4 @@
-package mwm.entities;
+package mwm.mappings;
 
 import java.util.Date;
 
