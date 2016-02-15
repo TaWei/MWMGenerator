@@ -33,8 +33,13 @@
 
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">create</property>
-
-        <mapping resource="mwm/mappings/Report.hbm.xml"/>
+		<property name="hibernate.physical_naming_strategy">mwm.hibernate.CustomNamingStrategy</property>
+		
+        <mapping class="mwm.entities.Report"/>
+        <mapping class="mwm.entities.Ticker"/>
+        <mapping class="mwm.entities.ClosingPrice"/>
+        <mapping class="mwm.entities.LowestPrice"/>
+        <mapping class="mwm.entities.HighestPrice"/>
 
     </session-factory>
 

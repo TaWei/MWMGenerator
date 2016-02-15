@@ -8,7 +8,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import mwm.mappings.Report;
+import mwm.entities.Report;
 
 public class Startup {
 	private static SessionFactory sessionFactory;
@@ -16,7 +16,7 @@ public class Startup {
 	protected static void initSession() throws Exception {
 		// A SessionFactory is set up once for an application!
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-				.configure() // configures settings from hibernate.cfg.xml
+				.configure("mwm/hibernate/hibernate.cfg.xml") // configures settings from hibernate.cfg.xml
 				.build();
 		try {
 			sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
@@ -33,8 +33,6 @@ public class Startup {
 		// create a couple of events...
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save( new Report( 0, new Date() ) );
-		session.save( new Report( 1, new Date() ) );
 		session.getTransaction().commit();
 		session.close();
 
