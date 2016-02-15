@@ -1,25 +1,24 @@
 package mwm.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Ticker {
+public class Stock {
 	private Long id;
 
 	private String name;
+	private String tickerName;
 	private String classification;
-	
 
-	public Ticker() {
+	public Stock() {
 		// this form used by Hibernate
 	}
 
-	public Ticker(String name, String classification) {
+	public Stock(String name, String classification) {
 		// for application use, to create new events
 		this.name = name;
 		this.classification = classification;
@@ -43,6 +42,15 @@ public class Ticker {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(unique = true, nullable = false)
+	public String getTickerName() {
+		return tickerName;
+	}
+
+	public void setTickerName(String tickerName) {
+		this.tickerName = tickerName;
+	}
 
 	public String getClassification() {
 		return classification;
@@ -51,4 +59,5 @@ public class Ticker {
 	public void setClassification(String classification) {
 		this.classification = classification;
 	}
+	
 }

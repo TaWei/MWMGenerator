@@ -1,14 +1,10 @@
 package mwm;
-import java.util.Date;
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
-import mwm.entities.Report;
 
 public class Startup {
 	private static SessionFactory sessionFactory;
@@ -25,26 +21,19 @@ public class Startup {
 			// The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
 			// so destroy it manually.
 			StandardServiceRegistryBuilder.destroy( registry );
+			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 	
 	public static void main(String[] args) throws Exception {
 		initSession();
+		
 		// create a couple of events...
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.getTransaction().commit();
 		session.close();
-
-		// now lets pull events from the database and list them
-		session = sessionFactory.openSession();
-        session.beginTransaction();
-        List result = session.createQuery( "from Report" ).list();
-		for ( Report report : (List<Report>) result ) {
-			System.out.println( "Report (" + report.getDate() + ") : " + report.getInstance() );
-		}
-        session.getTransaction().commit();
-        session.close();
 	}
 	
 	protected void tearDown() throws Exception {

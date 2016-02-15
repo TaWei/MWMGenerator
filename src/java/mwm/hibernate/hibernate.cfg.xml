@@ -36,10 +36,10 @@
 		<property name="hibernate.physical_naming_strategy">mwm.hibernate.CustomNamingStrategy</property>
 		
         <mapping class="mwm.entities.Report"/>
-        <mapping class="mwm.entities.Ticker"/>
-        <mapping class="mwm.entities.ClosingPrice"/>
-        <mapping class="mwm.entities.LowestPrice"/>
-        <mapping class="mwm.entities.HighestPrice"/>
+        <mapping class="mwm.entities.Stock"/>
+        <mapping class="mwm.entities.helpers.StockDailyRecordId"/>
+        <mapping class="mwm.entities.StockDailyRecord"/>
+        <mapping class="mwm.entities.ReportDetail"/>
 
     </session-factory>
 
