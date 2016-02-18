@@ -51,5 +51,7 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/MWMGenerator/lib/Other/commons-lang3-3.4-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/Other/commons-csv-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/Other/jfxrt.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
