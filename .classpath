@@ -51,7 +51,11 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/MWMGenerator/lib/Other/commons-lang3-3.4-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/Other/commons-csv-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/Other/commons-csv-1.2.jar" sourcepath="C:/Users/James/.m2/repository/org/apache/commons/commons-csv/1.2/commons-csv-1.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/MWMGenerator/lib/Other/commons-csv-1.2-javadocs.zip!/apidocs"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/Other/jfxrt.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

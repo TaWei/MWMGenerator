@@ -5,12 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,7 +60,14 @@ public class Startup extends Application{
         btn2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                chooseFile();
+                //File cadPrices = chooseFile();
+            	File cadPrices = new File("Prices_CAD.csv");
+                try {
+					importer.importCsv(cadPrices);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
         
@@ -81,6 +90,8 @@ public class Startup extends Application{
         });
         
         StackPane root = new StackPane();
+        Image icon = new Image(getClass().getResourceAsStream("scotiaframe.png"));
+        mainStage.getIcons().add(icon);
         btn1.setTranslateY(-75);
         btn2.setTranslateY(-25);
         btn3.setTranslateY(25);
@@ -90,7 +101,7 @@ public class Startup extends Application{
         root.getChildren().add(btn3);
         root.getChildren().add(btn4);
         
-        double width = 250;
+        double width = 400;
         double height = 300;
         
         Scene scene = new Scene(root, width, height);
