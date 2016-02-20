@@ -9,8 +9,11 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.csv.*;
+import org.hibernate.Session;
+
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import mwm.hibernate.HibernateUtil;
 
 public class DataImporter {
 	private static String TICKER_COLUMN_NAME = "Ticker";
@@ -29,11 +32,7 @@ public class DataImporter {
 		CSVParser records = CSVFormat.EXCEL.withHeader().parse(in);
 		Map<String,Integer> headerColumnMap = records.getHeaderMap();
 		Set<String> headers = headerColumnMap.keySet();
-		
-		long startTime = System.currentTimeMillis();
 
-		
-		
 		for (CSVRecord record : records) {
 		    Map<String,String> rowMap = record.toMap();
 		    String tickerName = rowMap.get(TICKER_COLUMN_NAME);
@@ -41,12 +40,13 @@ public class DataImporter {
     		for (Map.Entry<String, String> entry : rowMap.entrySet())
     		{
     		    String x = tickerName + " " + entry.getKey() + "/" + entry.getValue();
-    		    x = x + "";
+    		    Session session = HibernateUtil.getSessionFactory().openSession();
+    			session.beginTransaction();
+    			session.getTransaction().commit();
+    			session.close();
     		}
 		}
 		
-		long endTime = System.currentTimeMillis();
-		System.out.println("That took " + (endTime - startTime) + " milliseconds");
 	}
 	
 	
