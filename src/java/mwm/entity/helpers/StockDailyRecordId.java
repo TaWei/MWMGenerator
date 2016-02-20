@@ -1,4 +1,4 @@
-package mwm.entities.helpers;
+package mwm.entity.helpers;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,9 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.ForeignKey;
 
-import mwm.entities.Stock;
+import mwm.entity.Stock;
+
+import javax.persistence.ForeignKey;
 
 @Embeddable
 public class StockDailyRecordId implements Serializable {

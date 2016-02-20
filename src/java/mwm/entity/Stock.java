@@ -1,4 +1,4 @@
-package mwm.entities;
+package mwm.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,13 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Stock {
+	public enum Classifications {
+		US,
+		CAD,
+		ADR,
+		INDEX
+	}
+	
 	private Long id;
 
 	private String name;
@@ -18,9 +25,10 @@ public class Stock {
 		// this form used by Hibernate
 	}
 
-	public Stock(String name, String classification) {
+	public Stock(String name, String tickerName, String classification) {
 		// for application use, to create new events
 		this.name = name;
+		this.tickerName = tickerName;
 		this.classification = classification;
 	}
 

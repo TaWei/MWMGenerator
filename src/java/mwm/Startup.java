@@ -9,10 +9,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import mwm.entity.Stock;
+import mwm.entity.StockDailyRecord;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 import java.io.File;
 import java.io.IOException;
+
+import org.apache.commons.csv.CSVParser;
 
 public class Startup extends Application{
 	private static DataImporter importer;
@@ -39,12 +43,13 @@ public class Startup extends Application{
             public void handle(ActionEvent event) {
                 //File cadPrices = chooseFile();
             	File cadPrices = new File("Prices_CAD.csv");
+            	CSVParser records = null;
                 try {
-					importer.importCsv(cadPrices);
+					records = importer.importCsv(cadPrices);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+                importer.importPrices(records, Stock.Classifications.CAD.toString());
             }
         });
         

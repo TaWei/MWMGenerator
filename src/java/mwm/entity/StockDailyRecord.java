@@ -1,4 +1,4 @@
-package mwm.entities;
+package mwm.entity;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import mwm.entities.helpers.StockDailyRecordId;
+import mwm.entity.helpers.StockDailyRecordId;
 
 @Entity
 public class StockDailyRecord {
